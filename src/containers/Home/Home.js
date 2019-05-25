@@ -1,5 +1,5 @@
-import React, { Fragment, useEffect } from 'react';
-import { Repository, Nav } from 'components';
+import React from 'react';
+import { Repository } from 'components';
 
 const Home = () => {
   return <Repository />;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { pxToRem, variables } from 'styles';
+import { pxToRem } from 'styles';
 
 const StyledRepositoryItem = styled.div`
   border-bottom: 1px solid #e1e4e8;
