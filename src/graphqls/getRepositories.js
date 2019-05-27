@@ -1,12 +1,12 @@
 import gql from 'graphql-tag';
 
 const getRepositories = gql`
-  query user($login: String!) {
+  query user($login: String!, $after: String, $before: String, $first: Int, $last: Int) {
     user(login: $login) {
       name
       avatarUrl
       login
-      repositories(first: 10) {
+      repositories(first: $first, last: $last, after: $after, before: $before) {
         edges {
           node {
             id
