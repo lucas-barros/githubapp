@@ -1,1 +1,1 @@
-export { default } from './Repository.js';
+export { default } from './RepositoryList.js';

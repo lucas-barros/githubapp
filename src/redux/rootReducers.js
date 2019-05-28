@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import repositoriesReducer from 'redux/repositories/reducer';
+import userReducer from 'redux/user/reducer';
 
 const rootReducers = combineReducers({
-  repositoriesState: repositoriesReducer
+  userState: userReducer
 });
 
 export default rootReducers;

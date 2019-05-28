@@ -1,1 +1,1 @@
-export { default as getRepositories } from './getRepositories';
+export { default as getUser } from './getUser';

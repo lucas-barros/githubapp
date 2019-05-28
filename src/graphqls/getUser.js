@@ -1,11 +1,15 @@
 import gql from 'graphql-tag';
 
-const getRepositories = gql`
+const getUser = gql`
   query user($login: String!, $after: String, $before: String, $first: Int, $last: Int) {
     user(login: $login) {
       name
       avatarUrl
       login
+      bio
+      company
+      createdAt
+      email
       repositories(first: $first, last: $last, after: $after, before: $before) {
         edges {
           node {
@@ -14,14 +18,6 @@ const getRepositories = gql`
             name
             description
             url
-            languages(first: 10) {
-              edges {
-                node {
-                  id
-                  name
-                }
-              }
-            }
           }
         }
         pageInfo {
@@ -35,4 +31,4 @@ const getRepositories = gql`
   }
 `;
 
-export default getRepositories;
+export default getUser;

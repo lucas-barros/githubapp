@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { StyledNav } from './nav.style';
 import { FaGithub } from 'react-icons/fa';
-import { getRepositories } from 'redux/repositories/actions';
-import { Search } from 'components';
+import { getUser } from 'redux/user/actions';
+import { Search, User } from 'components';
 import debounce from 'lodash.debounce';
 
-const Nav = ({ getRepositories }) => {
-  const debounced = debounce((login) => getRepositories(login), 500);
+const Nav = ({ getUser, users }) => {
+  const debounced = debounce(login => getUser(login), 500);
 
   const handleChange = e => {
     debounced(e.target.value);
@@ -16,21 +16,26 @@ const Nav = ({ getRepositories }) => {
 
   return (
     <StyledNav>
-      <div className="nav-brand">
-        <Link to="/" className="nav-link">
-          <FaGithub size="30" />
-        </Link>
-        <Search handleChange={handleChange} />
-      </div>
+      <Link to="/" className="nav-brand">
+        <FaGithub size="30" />
+      </Link>
+      <Search handleChange={handleChange} />
+      {users.map(user => (
+        <User key={user.login} {...user} clickHandler={() => getUser(user.login)} />
+      ))}
     </StyledNav>
   );
 };
 
 const mapDispatchToProps = {
-  getRepositories
+  getUser
 };
 
+const mapStateToProps = ({ userState }) => ({
+  users: userState.users
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Nav);
