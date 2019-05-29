@@ -7,10 +7,7 @@ const StyledFooter = styled.div`
   justify-content: center;
   height: ${pxToRem(variables.footerHeight)};
   background: #211f1f;
-  a {
-    text-decoration: none;
-    color: #fff;
-  }
+  color: #fff;
 `;
 
 export { StyledFooter };

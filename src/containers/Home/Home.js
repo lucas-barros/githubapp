@@ -6,7 +6,7 @@ import { Loading, User, RepositoryList } from 'components';
 import { StyledHome } from './home.style';
 
 const Home = ({ searchString, type }) => {
-  const [page, setPage] = useState({ first: 10 });
+  const [page, setPage] = useState({ first: 100 });
   const query = type === 'user' ? getUser : getRepos;
   if(type === 'language') searchString = `language:${searchString}`
   // Workaround bug https://github.com/apollographql/react-apollo/issues/1931 
@@ -16,7 +16,7 @@ const Home = ({ searchString, type }) => {
   useEffect(
     () =>
       setPage({
-        first: 10,
+        first: 100,
         last: null,
         before: null,
         after: null

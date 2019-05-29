@@ -5,7 +5,7 @@ const StyledUser = styled.div`
   display: flex;
   flex-direction: column;
   ${media.md`flex-direction: row;`}
-  
+
   .user {
     display: flex;
     flex-direction: column;
@@ -43,7 +43,23 @@ const StyledUser = styled.div`
   }
   .repositories {
     flex: 0 0 100%;
+    max-width: 100%;
     ${media.md`flex: 0 0 70%;`}
+    ${media.md`max-width: 70%;`}
+  }
+
+  .digest {
+    margin: ${pxToRem(20)} 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    overflow-x: hidden;
+
+    &-item {
+      padding: 0 ${pxToRem(25)};
+      text-align: center;
+    }
   }
 `;
 

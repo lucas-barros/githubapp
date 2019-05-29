@@ -4,6 +4,7 @@ import { addUser } from 'redux/actions';
 import { RepositoryItem, List } from 'components';
 import { Flex } from '@rebass/grid';
 import { StyledUser } from './user.style';
+import { format } from 'date-fns';
 
 const User = ({ data, setPage, addUser }) => {
   if (!data) return <p>No Users</p>;
@@ -12,6 +13,12 @@ const User = ({ data, setPage, addUser }) => {
   const {
     pageInfo: { startCursor: before, endCursor: after, hasPreviousPage, hasNextPage }
   } = repositories;
+
+  const reposByYear = repositories.edges.reduce((acc, repo) => {
+    const year = format(repo.node.createdAt, 'YYYY');
+    acc[year] = acc[year] ? acc[year] + 1 : 1;
+    return acc;
+  }, {});
 
   return (
     <StyledUser>
@@ -28,9 +35,18 @@ const User = ({ data, setPage, addUser }) => {
         <div>{description}</div>
       </div>
       <div className="repositories">
+        <strong>Repos per year</strong>
+        <ul className="digest">
+          {Object.keys(reposByYear).map(year => (
+            <li key={year} className="digest-item">
+              <div className="digest-amount">{reposByYear[year]}</div>
+              <div className="digest-year">{year}</div>
+            </li>
+          ))}
+        </ul>
         <List
-          prev={() => setPage({ before, last: 10 })}
-          next={() => setPage({ after, first: 10 })}
+          prev={() => setPage({ before, last: 100 })}
+          next={() => setPage({ after, first: 100 })}
           hasPreviousPage={hasPreviousPage}
           hasNextPage={hasNextPage}
         >
