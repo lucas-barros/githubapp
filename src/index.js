@@ -5,11 +5,11 @@ import { ApolloProvider } from 'react-apollo';
 
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import rootReducers from 'redux/rootReducers';
+import reducer from 'redux/reducer';
 
 import { Router } from 'router';
 
-const store = createStore(rootReducers, {});
+const store = createStore(reducer);
 
 const client = new ApolloClient({
   uri: 'https://api.github.com/graphql',

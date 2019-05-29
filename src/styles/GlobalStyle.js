@@ -1,6 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
+	@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&display=swap');
+
 	* {
 		box-sizing: border-box;
 	}
@@ -9,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
 		padding: 0;
     color: #333;
     display: flex;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto Slab', serif;
     font-size: 1rem;
 	}
 	h1 {

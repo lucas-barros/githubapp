@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { StyledNav } from './nav.style';
 import { FaGithub } from 'react-icons/fa';
-import { getUser } from 'redux/user/actions';
-import { Search, User } from 'components';
+import { getUser, getRepos } from 'redux/actions';
+import { Search, UserCard } from 'components';
 import debounce from 'lodash.debounce';
 
-const Nav = ({ getUser, users }) => {
-  const debounced = debounce(login => getUser(login), 500);
+const Nav = ({ getUser, getRepos, users, type }) => {
+  const action = type === 'user' ? getUser : getRepos;
+  const debounced = debounce(searchString => action(searchString), 500);
 
   const handleChange = e => {
     debounced(e.target.value);
@@ -21,18 +22,20 @@ const Nav = ({ getUser, users }) => {
       </Link>
       <Search handleChange={handleChange} />
       {users.map(user => (
-        <User key={user.login} {...user} clickHandler={() => getUser(user.login)} />
+        <UserCard key={user.login} {...user} clickHandler={() => getUser(user.login)} />
       ))}
     </StyledNav>
   );
 };
 
 const mapDispatchToProps = {
-  getUser
+  getUser,
+  getRepos
 };
 
-const mapStateToProps = ({ userState }) => ({
-  users: userState.users
+const mapStateToProps = ({ users, type }) => ({
+  users,
+  type
 });
 
 export default connect(

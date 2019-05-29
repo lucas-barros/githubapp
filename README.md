@@ -1,10 +1,4 @@
-# Aceleradev React Final Project
-Squad 6 final project.
-- Cristian Araujo de Jesus
-- Lucas Barros Araujo
-- Luis Alberto Nunes
-- Thiago Fabrício Escobar
-- Wilson Matokanovic Junior
+# Github Graphql API react client
 
 ## Installation
 1) Clone this repo
