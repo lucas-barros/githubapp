@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 const getUser = gql`
-  query user($login: String!, $after: String, $before: String, $first: Int, $last: Int) {
-    user(login: $login) {
+  query user($searchString: String!, $after: String, $before: String, $first: Int, $last: Int) {
+    user(login: $searchString) {
       name
       avatarUrl
       login
@@ -10,7 +10,13 @@ const getUser = gql`
       company
       createdAt
       email
-      repositories(first: $first, last: $last, after: $after, before: $before) {
+      repositories(
+        first: $first
+        last: $last
+        after: $after
+        before: $before
+        ownerAffiliations: [OWNER]
+      ) {
         edges {
           node {
             id

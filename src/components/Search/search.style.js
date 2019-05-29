@@ -3,8 +3,8 @@ import { pxToRem, media } from 'styles';
 
 const StyledSearch = styled.div`
   width: 100%;
-
-  input {
+  display: flex;
+  .search-input {
     width: 70%;
     ${media.md`width: 250px;`}
     height: ${pxToRem(25)};
@@ -16,13 +16,22 @@ const StyledSearch = styled.div`
     color: #7a7d80;
     outline: 0;
     transition: all 0.3s ease-out;
-  }
-  input:focus {
-    width: 90%;
-    ${media.md`width: 350px;`}
 
-    transition: all 0.3s ease-out;
-    background-color: #fff;
+    &:focus {
+      width: 90%;
+      ${media.md`width: 350px;`}
+      transition: all 0.3s ease-out;
+      background-color: #fff;
+    }
+  }
+
+  .search-select {
+    display: flex;
+    align-items: center;
+  }
+  .search-option {
+    color: #fff;
+    padding: 0 ${pxToRem(5)};
   }
 `;
 

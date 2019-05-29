@@ -1,23 +1,26 @@
 import React from 'react';
+import { RepositoryItem, List } from 'components';
 import { StyledRepositoryList } from './repositoryList.style';
-import RepositoryItem from './RepositoryItem';
 
-const RepositoryList = ({ repositories, next, prev, hasPreviousPage, hasNextPage }) => {
+const RepositoryList = ({ data, setPage }) => {
+  if (data.search.edges.length === 0) return <p>No Repositories</p>;
+
+  const {
+    pageInfo: { startCursor: before, endCursor: after, hasPreviousPage, hasNextPage }
+  } = data.search;
+
   return (
     <StyledRepositoryList>
-      <div className="repositories">
-        {repositories.edges.map(edges => (
-          <RepositoryItem key={edges.node.id} {...edges.node} />
-        ))}
-      </div>
-      <div className="pagination">
-        <button disabled={!hasPreviousPage} onClick={prev}>
-          Prev
-        </button>
-        <button disabled={!hasNextPage} onClick={next}>
-          Next
-        </button>
-      </div>
+      <List
+        prev={() => setPage({ before, last: 10 })}
+        next={() => setPage({ after, first: 10 })}
+        hasPreviousPage={hasPreviousPage}
+        hasNextPage={hasNextPage}
+      >
+        {data.search.edges.map(edges => {
+          return <RepositoryItem key={edges.node.id} {...edges.node} />;
+        })}
+      </List>
     </StyledRepositoryList>
   );
 };

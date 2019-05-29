@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { pxToRem } from 'styles';
 
-const StyledUser = styled.div`
+const StyledUserCard = styled.div`
   display: flex;
   padding: ${pxToRem(5)};
 
@@ -12,4 +12,4 @@ const StyledUser = styled.div`
   }
 `;
 
-export { StyledUser };
+export { StyledUserCard };
