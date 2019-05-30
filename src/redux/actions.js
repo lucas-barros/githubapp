@@ -21,6 +21,13 @@ const addUser = user => ({
   }
 });
 
+const removeUser = user => ({
+  type: types.REMOVE_USER,
+  payload: {
+    user
+  }
+});
+
 const setType = type => ({
   type: types.SET_TYPE,
   payload: {
@@ -28,4 +35,4 @@ const setType = type => ({
   }
 });
 
-export { getUser, addUser, setType, getRepos };
+export { getUser, addUser, setType, getRepos, removeUser };

@@ -1,12 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addUser } from 'redux/actions';
+import { addUser, removeUser } from 'redux/actions';
 import { RepositoryItem, List } from 'components';
 import { Flex } from '@rebass/grid';
 import { StyledUser } from './user.style';
 import { format } from 'date-fns';
 
-const User = ({ data, setPage, addUser }) => {
+const getReposByYear = repos => {
+  return repos.reduce((acc, repo) => {
+    const year = format(repo.node.createdAt, 'YYYY');
+    acc[year] = acc[year] ? acc[year] + 1 : 1;
+    return acc;
+  }, {});
+};
+
+const isUserStored = (currentUser, users) => users.some(user => user.login === currentUser.login);
+
+const User = ({ data, setPage, addUser, users, removeUser }) => {  
   if (!data) return <p>No Users</p>;
 
   const { avatarUrl, name, login, email, description, repositories } = data.user;
@@ -14,11 +24,17 @@ const User = ({ data, setPage, addUser }) => {
     pageInfo: { startCursor: before, endCursor: after, hasPreviousPage, hasNextPage }
   } = repositories;
 
-  const reposByYear = repositories.edges.reduce((acc, repo) => {
-    const year = format(repo.node.createdAt, 'YYYY');
-    acc[year] = acc[year] ? acc[year] + 1 : 1;
-    return acc;
-  }, {});
+  const reposByYear = getReposByYear(repositories.edges);
+
+  const button = isUserStored(data.user, users) ? (
+    <button className="user-button user-button-remove" onClick={() => removeUser(data.user)}>
+      Remove
+    </button>
+  ) : (
+    <button className="user-button user-button-add" onClick={() => addUser(data.user)}>
+      Add
+    </button>
+  );
 
   return (
     <StyledUser>
@@ -26,9 +42,7 @@ const User = ({ data, setPage, addUser }) => {
         <img className="user-avatar" src={avatarUrl} alt={`${name} avatar`} />
         <Flex>
           <span className="user-name">{name}</span>
-          <button className="user-add" onClick={() => addUser(data.user)}>
-            Add
-          </button>
+          {button}
         </Flex>
         <div>{login}</div>
         <div>{email}</div>
@@ -60,10 +74,15 @@ const User = ({ data, setPage, addUser }) => {
 };
 
 const mapDispatchToProps = {
-  addUser
+  addUser,
+  removeUser
 };
 
+const mapStateToProps = ({ users }) => ({
+  users
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(User);

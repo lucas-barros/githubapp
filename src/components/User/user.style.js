@@ -15,13 +15,21 @@ const StyledUser = styled.div`
     flex: 0 0 100%;
     ${media.md`flex: 0 0 30%;`}
 
-    &-add {
-      background-image: linear-gradient(-180deg, #34d058, #28a745 90%);
+    &-button {
       line-height: ${pxToRem(20)};
       padding: ${pxToRem(3)} ${pxToRem(10)};
       border: ${pxToRem(1)} solid rgba(27, 31, 35, 0.2);
       border-radius: ${pxToRem(4)};
       color: #fff;
+      cursor: pointer;
+    }
+
+    &-button-add {
+      background-image: linear-gradient(-180deg, #34d058, #28a745 90%);
+    }
+
+    &-button-remove {
+      background-image: linear-gradient(-180deg, #de4450, #cb2431 90%);
     }
 
     &-name {
