@@ -1,4 +1,4 @@
-import types from 'redux/types';
+import types from 'store/types';
 
 const getUser = searchString => ({
   type: types.GET_USER,
@@ -28,11 +28,4 @@ const removeUser = user => ({
   }
 });
 
-const setType = type => ({
-  type: types.SET_TYPE,
-  payload: {
-    type
-  }
-});
-
-export { getUser, addUser, setType, getRepos, removeUser };
+export { getUser, addUser, getRepos, removeUser };

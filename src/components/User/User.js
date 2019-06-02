@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addUser, removeUser } from 'redux/actions';
-import { RepositoryItem, List } from 'components';
+import { addUser, removeUser } from 'store/actions';
+import { RepositoryList } from 'components';
 import { Flex } from '@rebass/grid';
 import { StyledUser } from './user.style';
 import { format } from 'date-fns';
@@ -16,7 +16,7 @@ const getReposByYear = repos => {
 
 const isUserStored = (currentUser, users) => users.some(user => user.login === currentUser.login);
 
-const User = ({ data, setPage, addUser, users, removeUser }) => {  
+const User = ({ data, setPage, addUser, users, removeUser }) => {
   if (!data) return <p>No Users</p>;
 
   const { avatarUrl, name, login, email, description, repositories } = data.user;
@@ -58,16 +58,13 @@ const User = ({ data, setPage, addUser, users, removeUser }) => {
             </li>
           ))}
         </ul>
-        <List
-          prev={() => setPage({ before, last: 100 })}
-          next={() => setPage({ after, first: 100 })}
+        <RepositoryList
+          repositories={repositories.edges}
+          prev={() => setPage({ before, last: 10 })}
+          next={() => setPage({ after, first: 10 })}
           hasPreviousPage={hasPreviousPage}
           hasNextPage={hasNextPage}
-        >
-          {repositories.edges.map(edges => {
-            return <RepositoryItem key={edges.node.id} {...edges.node} />;
-          })}
-        </List>
+        />
       </div>
     </StyledUser>
   );

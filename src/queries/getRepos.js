@@ -8,16 +8,13 @@ const getRepos = gql`
       last: $last
       after: $after
       before: $before
-      type: REPOSITORY
+      type: USER
     ) {
       edges {
         node {
-          ... on Repository {
+          ... on User {
             id
             name
-            url
-            description
-            createdAt
           }
         }
       }

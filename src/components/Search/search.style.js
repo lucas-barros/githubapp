@@ -24,15 +24,6 @@ const StyledSearch = styled.div`
       background-color: #fff;
     }
   }
-
-  .search-select {
-    display: flex;
-    align-items: center;
-  }
-  .search-option {
-    color: #fff;
-    padding: 0 ${pxToRem(5)};
-  }
 `;
 
 export { StyledSearch };

@@ -16,7 +16,7 @@ const getUser = gql`
         after: $after
         before: $before
         ownerAffiliations: [OWNER]
-        orderBy: {field: CREATED_AT, direction: DESC}
+        orderBy: { field: CREATED_AT, direction: DESC }
       ) {
         edges {
           node {

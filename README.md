@@ -1,4 +1,21 @@
-# Github Graphql API react client
+# Github Graphql API React client
+
+Project developed for Aceleradev React. It is a react client application that consumes Github GraphQL API to display information about users and repositories.
+
+Check out the [Demo](https://lucas-github-app.herokuapp.com/)!
+
+## Stack
+- React
+- Create React App
+- Apollo Client
+- Redux
+- React Router
+- Styled-components
+
+## Requirements
+- Node.js
+- Yarn
+- Github API token
 
 ## Installation
 1) Clone this repo
