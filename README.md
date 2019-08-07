@@ -2,7 +2,7 @@
 
 Project developed for Aceleradev React. It is a react client application that consumes Github GraphQL API to display information about users and repositories.
 
-Check out the [Demo](https://lucas-github-app.herokuapp.com/)!
+Check out the [Demo](https://github-graphql-react.netlify.com/)!
 
 ## Stack
 - React
